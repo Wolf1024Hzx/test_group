@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Map.h"
-#include "functions.h"
 #include "AllMaps.h"
 
 using namespace std;
@@ -9,7 +9,9 @@ using namespace std;
 int main()
 {
 	AllMaps a;
-	string name = "No1";
-	a.deleteMapByNumber(0);
+	vector<string> arr{ "*   *", "*****" };
+	string n = "test_create_map";
+	a.newMap(n, arr);
+	a.display();
 	return 0;
 }
