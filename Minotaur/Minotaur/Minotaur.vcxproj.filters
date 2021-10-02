@@ -18,7 +18,10 @@
     <ClInclude Include="Map.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GetMapFromFiles.h">
+    <ClInclude Include="AllMaps.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="functions.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,11 +29,14 @@
     <ClCompile Include="Map.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="GetMapFromFiles.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="Minotaur.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AllMaps.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="functions.cpp">
+      <Filter>头文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

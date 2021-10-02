@@ -1,4 +1,5 @@
-﻿  GetMapFromFiles.cpp
+﻿  AllMaps.cpp
+  functions.cpp
   Map.cpp
   Minotaur.cpp
   正在生成代码...

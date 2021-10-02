@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GetMapFromFiles.h" />
+    <ClInclude Include="AllMaps.h" />
+    <ClInclude Include="functions.h" />
     <ClInclude Include="Map.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GetMapFromFiles.cpp" />
+    <ClCompile Include="AllMaps.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Minotaur.cpp" />
   </ItemGroup>

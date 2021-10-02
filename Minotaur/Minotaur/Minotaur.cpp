@@ -1,17 +1,15 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
 #include "Map.h"
-#include "GetMapFromFiles.h"
+#include "functions.h"
+#include "AllMaps.h"
 
 using namespace std;
 
 int main()
 {
-	int no;
-	cin >> no;
-	for (string& i : loadMap(no))
-		cout << i << endl;
+	AllMaps a;
+	string name = "No1";
+	a.deleteMapByNumber(0);
 	return 0;
 }
