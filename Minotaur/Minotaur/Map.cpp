@@ -8,8 +8,9 @@ using namespace std;
 
 MAP::MAP(vector<string>& temp)
 {
-	length = temp[0].length();
-	height = temp.size();
+	height = (int)temp.size();
+	if (!height) length = (int)temp[0].length();
+	else length = 0;
 	Map = new char* [height];
 	for (int i = 0; i < height; i++) Map[i] = new char[length];
 	for (int i = 0; i < height; i++)
