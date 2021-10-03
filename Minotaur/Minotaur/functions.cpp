@@ -28,6 +28,7 @@ vector<string> chooseMap(AllMaps &all)
 			while (1)
 			{
 				cin >> name;
+				bool flag2 = false; // 若输入的名字合法但用户不想要且用户希望切换到序号查询，flag2置true跳出
 				if (all.names.count(name))
 				{
 					system("cls");
@@ -47,16 +48,36 @@ vector<string> chooseMap(AllMaps &all)
 						else if (order1 == 'n' || order1 == 'N')
 						{
 							all.display();
-							cout << "--Please enter the name again." << endl << ">>";
+							cout << endl << "--Do you want to change to enter the map's number?[y/n]" << endl << ">>";
+							char order2;
+							bool flag1 = false; 
+							while (1)
+							{
+								cin >> order2;
+								if (order2 == 'y' || order2 == 'Y')
+								{
+									flag = false;
+									flag2 = true;
+									order = '2';
+									break;
+								}
+								else if (order2 == 'n' || order2 == 'N')
+								{
+									cout << "--Please enter the name again." << endl << ">>";
+									break;
+								}
+								else cout << "--We do not recognize this command, please enter again." << endl << ">>";
+							}
 							break;
 						}
 						else cout << "--We do not recognize this command, please enter again." << endl << ">>";
 					}
+					if (flag2) break;
 				}
 				else
 				{
-					cout << "--Sorry, we don't have this map." << endl << endl;
-					cout << "--Do you want to enter the map's number?[y/n]" << endl << ">>";
+					cout << "--Sorry, we don't have this map." << endl;
+					cout << endl << "--Do you want to change to enter the map's number?[y/n]" << endl << ">>";
 					char order1;
 					bool flag1 = false; // 若输入的名字不合法且用户希望切换到序号查询，flag1置true跳出
 					while (1)
@@ -87,6 +108,7 @@ vector<string> chooseMap(AllMaps &all)
 			while (1)
 			{
 				cin >> no;
+				bool flag2 = false; // 若输入的序号合法但用户不想要且用户希望切换到名字查询，flag2置true跳出
 				if (no < len && no >= 0)
 				{
 					system("cls");
@@ -106,16 +128,35 @@ vector<string> chooseMap(AllMaps &all)
 						else if (order1 == 'n' || order1 == 'N')
 						{
 							all.display();
-							cout << "--Please enter the number again." << endl << ">>";
+							char order2;
+							cout << endl << "--Do you want to change to enter the map's name?[y/n]" << endl << ">>";
+							while (1)
+							{
+								cin >> order2;
+								if (order2 == 'y' || order2 == 'Y')
+								{
+									flag = false;
+									flag2 = true;
+									order = '1';
+									break;
+								}
+								else if (order2 == 'n' || order2 == 'N')
+								{
+									cout << "--Please enter the number again." << endl << ">>";
+									break;
+								}
+								else cout << "--We do not recognize this command, please enter again." << endl << ">>";
+							}
 							break;
 						}
 						else cout << "--We do not recognize this command, please enter again." << endl << ">>";
 					}
+					if (flag2) break;
 				}
 				else
 				{
-					cout << "--We don't have this number." << endl << endl;
-					cout << "--Do you want to enter the map's name?[y/n]" << endl << ">>";
+					cout << "--We don't have this number." << endl;
+					cout << endl << "--Do you want to change to enter the map's name?[y/n]" << endl << ">>";
 					bool flag1 = false; // 若输入的数不合法且用户希望切换到名字查询，flag1置true跳出
 					char order1;
 					while (1)
