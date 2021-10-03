@@ -27,6 +27,7 @@ AllMaps::AllMaps()
 
 void AllMaps::display()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 	cout << "Here are the maps now:" << endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	cout << "___________________________________" << endl << "|                                 |" << endl;
@@ -40,7 +41,7 @@ void AllMaps::display()
 		cout << '|' << endl;
 	}
 	cout << "|                                 |" << endl << "-----------------------------------" << endl;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 	return;
 }
 

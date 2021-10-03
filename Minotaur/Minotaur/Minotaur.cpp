@@ -3,15 +3,14 @@
 #include <vector>
 #include "Map.h"
 #include "AllMaps.h"
+#include "functions.h"
 
 using namespace std;
 
 int main()
 {
 	AllMaps a;
-	vector<string> arr{ "*   *", "*****" };
-	string n = "test_create_map";
-	a.newMap(n, arr);
-	a.display();
+	vector<string> m = chooseMap(a);
+	showMap(m);
 	return 0;
 }
