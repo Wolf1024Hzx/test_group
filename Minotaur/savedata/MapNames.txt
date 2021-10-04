@@ -1,5 +1,4 @@
 No1
 test
-test_create_map
 es211004a
 es211004b

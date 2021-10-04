@@ -55,7 +55,7 @@ void MAP::printMap(int x, int y)
 		}
 		cout << endl;
 	}
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 	return;
 }
 
@@ -68,14 +68,14 @@ void MAP::findSolutionByDFS()
 		cout << "here are the route:" << endl;
 		while (ans.size() > 2)
 		{
-			cout << '(' << ans.top() << ', ';
+			cout << "(" << ans.top() << ", ";
 			ans.pop();
 			cout << ans.top() << ") -> ";
 			ans.pop();
 		}
-		cout << '(' << ans.top() << ', ';
+		cout << "(" << ans.top() << ", ";
 		ans.pop();
-		cout << ans.top() << ')' << endl;
+		cout << ans.top() << ")" << endl;
 	}
 	else cout << "We can't find the way to our destination~" << endl;
 	return;
@@ -98,24 +98,28 @@ bool MAP::dfs(int x, int y, stack<int>& ans)
 		ans.push(y);
 		return true;
 	}
+	printMap(x, y);
 	if (x < height - 1 && (Map[x + 1][y] == ' ' || Map[x + 1][y] == 'E') && dfs(x + 1, y, ans))
 	{
 		ans.push(x);
 		ans.push(y);
 		return true;
 	}
+	printMap(x, y);
 	if (x > 0 && (Map[x - 1][y] == ' ' || Map[x - 1][y] == 'E') && dfs(x - 1, y, ans))
 	{
 		ans.push(x);
 		ans.push(y);
 		return true;
 	}
+	printMap(x, y);
 	if (y > 0 && (Map[x][y - 1] == ' ' || Map[x][y - 1] == 'E') && dfs(x, y - 1, ans))
 	{
 		ans.push(x);
 		ans.push(y);
 		return true;
 	}
+	printMap(x, y);
 	return false;
 }
 
