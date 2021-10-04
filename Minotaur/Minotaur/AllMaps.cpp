@@ -131,3 +131,21 @@ vector<string> AllMaps::loadMapByNumber(int no)
 	readfile.close();
 	return m;
 }
+
+bool AllMaps::findMap(string index, int mode) {
+	if (mode == 1) {
+		if (names.count(index))
+			return true;
+		else return false;
+	}
+	else {
+		for (char& c : index) {
+			if (!isdigit(c))
+				return false;
+		}
+		int No = stoi(index);
+		if (No < 0 || No >= (int)namesOfMaps.size())
+			return false;
+		else return true;
+	}
+}

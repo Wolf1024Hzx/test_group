@@ -10,7 +10,7 @@ MAP::MAP(vector<string>& temp)
 {
 	begin_x = begin_y = end_x = end_y = 0;
 	height = (int)temp.size();
-	if (!height) length = (int)temp[0].length();
+	if (height) length = (int)temp[0].length();
 	else length = 0;
 	Map = new char* [height];
 	for (int i = 0; i < height; i++) Map[i] = new char[length];
@@ -83,6 +83,7 @@ void MAP::findSolutionByDFS()
 
 bool MAP::dfs(int x, int y, stack<int>& ans)
 {
+	Sleep(1000);
 	printMap(x, y);
 	if (Map[x][y] == 'E')
 	{

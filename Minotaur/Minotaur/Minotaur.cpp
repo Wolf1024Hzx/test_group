@@ -9,8 +9,15 @@ using namespace std;
 
 int main()
 {
-	AllMaps a;
-	vector<string> m = chooseMap(a);
-	showMap(m);
+	AllMaps all;
+	while (1) {
+		system("cls");
+		welcome_windows();
+		int order;
+		cin >> order;
+		if (!operation(all, order))
+			cout << "operation failed" << endl;
+		system("pause");
+	}
 	return 0;
 }

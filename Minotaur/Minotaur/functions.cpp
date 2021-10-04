@@ -1,39 +1,50 @@
 #include <iostream>
+#include <math.h>
 #include <windows.h>
 #include "functions.h"
 #include "AllMaps.h"
+#include "Map.h"
 
 using namespace std;
 
 void welcome_windows()
 {
 	system("cls");
+	cout << "*********************************************" << endl;
+	cout << "*  !!!Welcome To A Simple Minotaur Game!!!  *" << endl;
+	cout << "*             1. start game                 *" << endl;
+	cout << "*             2. creat new map              *" << endl;
+	cout << "*             3. delete old map             *" << endl;
+	cout << "*             4. View existing maps         *" << endl;
+	cout << "*********************************************" << endl;
+	cout << "--please choose operation by entering number." << endl;
+	cout << ">>";
 }
 
-vector<string> chooseMap(AllMaps &all)
+vector<string> chooseMap(AllMaps& all)
 {
 	all.display();
 	cout << "--You could choose Map by entering it's name or by entering it's number." << endl;
 	cout << "--By which method would you like to?[1/2]" << endl << ">>";
 	char order;
-	bool flag = true; // 是否需要再次输入order
+	bool flag = true; // 鏄惁闇�瑕佸啀娆¤緭鍏rder
 	while (1)
 	{
 		if (flag) cin >> order;
 		cout << endl;
+		string index;
 		if (order == '1')
 		{
 			cout << "--Now, please enter the name of the map you want to choose." << endl << ">>";
-			string name;
 			while (1)
 			{
-				cin >> name;
-				bool flag2 = false; // 若输入的名字合法但用户不想要且用户希望切换到序号查询，flag2置true跳出
-				if (all.names.count(name))
+				cin >> index;
+				bool flag2 = false; // 鑻ヨ緭鍏ョ殑鍚嶅瓧鍚堟硶浣嗙敤鎴蜂笉鎯宠涓旂敤鎴峰笇鏈涘垏鎹㈠埌搴忓彿鏌ヨ锛宖lag2缃畉rue璺冲嚭
+				if (all.findMap(index,1))
 				{
 					system("cls");
 					cout << "Here's the map:" << endl;
-					vector<string> m = all.loadMapByName(name);
+					vector<string> m = all.loadMapByName(index);
 					showMap(m);
 					cout << endl << "--Do you want to choose this map?[y/n]" << endl << ">>";
 					char order1;
@@ -50,7 +61,7 @@ vector<string> chooseMap(AllMaps &all)
 							all.display();
 							cout << endl << "--Do you want to change to enter the map's number?[y/n]" << endl << ">>";
 							char order2;
-							bool flag1 = false; 
+							bool flag1 = false;
 							while (1)
 							{
 								cin >> order2;
@@ -79,7 +90,7 @@ vector<string> chooseMap(AllMaps &all)
 					cout << "--Sorry, we don't have this map." << endl;
 					cout << endl << "--Do you want to change to enter the map's number?[y/n]" << endl << ">>";
 					char order1;
-					bool flag1 = false; // 若输入的名字不合法且用户希望切换到序号查询，flag1置true跳出
+					bool flag1 = false; // 鑻ヨ緭鍏ョ殑鍚嶅瓧涓嶅悎娉曚笖鐢ㄦ埛甯屾湜鍒囨崲鍒板簭鍙锋煡璇紝flag1缃畉rue璺冲嚭
 					while (1)
 					{
 						cin >> order1;
@@ -103,17 +114,16 @@ vector<string> chooseMap(AllMaps &all)
 		}
 		if (order == '2')
 		{
-			int no, len = (int)all.namesOfMaps.size();
 			cout << "--Now, please enter the number of the map you want to choose." << endl << ">>";
 			while (1)
 			{
-				cin >> no;
-				bool flag2 = false; // 若输入的序号合法但用户不想要且用户希望切换到名字查询，flag2置true跳出
-				if (no < len && no >= 0)
+				cin >> index;
+				bool flag2 = false; // 鑻ヨ緭鍏ョ殑搴忓彿鍚堟硶浣嗙敤鎴蜂笉鎯宠涓旂敤鎴峰笇鏈涘垏鎹㈠埌鍚嶅瓧鏌ヨ锛宖lag2缃畉rue璺冲嚭
+				if (all.findMap(index,2))
 				{
 					system("cls");
 					cout << "Here's the map:" << endl;
-					vector<string> m = all.loadMapByNumber(no);
+					vector<string> m = all.loadMapByNumber(stoi(index));
 					showMap(m);
 					cout << endl << "--Do you want to choose this map?[y/n]" << endl << ">>";
 					char order1;
@@ -157,7 +167,7 @@ vector<string> chooseMap(AllMaps &all)
 				{
 					cout << "--We don't have this number." << endl;
 					cout << endl << "--Do you want to change to enter the map's name?[y/n]" << endl << ">>";
-					bool flag1 = false; // 若输入的数不合法且用户希望切换到名字查询，flag1置true跳出
+					bool flag1 = false; // 鑻ヨ緭鍏ョ殑鏁颁笉鍚堟硶涓旂敤鎴峰笇鏈涘垏鎹㈠埌鍚嶅瓧鏌ヨ锛宖lag1缃畉rue璺冲嚭
 					char order1;
 					while (1)
 					{
@@ -197,4 +207,92 @@ void showMap(vector<string>& m)
 		cout << i << endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);;
 	return;
+}
+
+bool operation(AllMaps& all, int order) {
+	switch (order) {
+	case 1: {
+		vector<string> tmp = chooseMap(all);
+		if (!tmp.empty()) {
+			MAP map(tmp);
+			map.findSolutionByDFS();
+			return true;
+		}
+		else return false;
+	}
+	case 2: {
+		string name;
+		cout << "--Please enter the name of new map" << endl << ">>";
+		if (!all.findMap(name, 1)) {
+			cin >> name;
+			vector<string> map;
+			int height;
+			cout << "--Please enter the height of new map" << endl << ">>";
+			cin >> height;
+			getchar();
+			cout << "--Please create the new map:" << endl;
+			while (height--) {
+				string line;
+				getline(cin, line);
+				map.push_back(line);
+			}
+			all.newMap(name, map);
+			cout << "created successfully" << endl;
+			return true;
+		}
+		else return false;
+	}
+	case 3: {
+		all.display();
+		int order;
+		cout << "--You could delete Map by entering it's name or by entering it's number." << endl;
+		cout << "--By which method would you like to?[1/2]" << endl << ">>";
+		cin >> order;
+		string index;
+		if (order == 1) {
+			cout << "--Now, please enter the name of the map you want to delete." << endl << ">>";
+			cin >> index;
+			if (all.findMap(index, 1)) {
+				system("cls");
+				cout << "Here's the map:" << endl;
+				vector<string> m = all.loadMapByName(index);
+				showMap(m);
+				cout << endl << "--Do you want to choose this map?[y/n]" << endl << ">>";
+				char order1;
+				cin >> order1;
+				if (order1 == 'y' || order1 == 'Y') {
+					all.deleteMapByName(index);
+					cout << "deleted successfully" << endl;
+				}
+				return true;
+			}
+			else return false;
+		}
+		else if (order == 2) {
+			cout << "--Now, please enter the number of the map you want to delete." << endl << ">>";
+			cin >> index;
+			if (all.findMap(index, 2)) {
+				system("cls");
+				cout << "Here's the map:" << endl;
+				vector<string> m = all.loadMapByNumber(stoi(index));
+				showMap(m);
+				cout << endl << "--Do you want to delete this map?[y/n]" << endl << ">>";
+				char order1;
+				cin >> order1;
+				if (order1 == 'y' || order1 == 'Y') {
+					all.deleteMapByNumber(stoi(index));
+					cout << "deleted successfully" << endl;
+				}
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	case 4: {
+		all.display();
+		return true;
+	}
+	default: return false;
+	}
 }
