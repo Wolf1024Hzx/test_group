@@ -149,3 +149,21 @@ bool AllMaps::findMap(string index, int mode) {
 		else return true;
 	}
 }
+
+void AllMaps::changeMapByName(string& name, vector<string> &m)
+{
+	string Path = "../savedata/" + name + ".txt";
+	fstream writefile(Path, ios::binary | ios::out);
+	for (string& i : m) writefile << i << endl;
+	writefile.close();
+	return;
+}
+
+void AllMaps::changeMapByNumber(int no, vector<string>& m)
+{
+	string Path = "../savedata/" + namesOfMaps[no] + ".txt";
+	fstream writefile(Path, ios::binary | ios::out);
+	for (string& i : m) writefile << i << endl;
+	writefile.close();
+	return;
+}
