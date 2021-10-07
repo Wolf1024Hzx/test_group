@@ -150,7 +150,7 @@ bool AllMaps::findMap(string index, int mode) {
 	}
 }
 
-void AllMaps::changeMapByName(string& name, vector<string> &m)
+void AllMaps::modifyMapByName(string& name, vector<string> &m)
 {
 	string Path = "../savedata/" + name + ".txt";
 	fstream writefile(Path, ios::binary | ios::out);
@@ -159,7 +159,7 @@ void AllMaps::changeMapByName(string& name, vector<string> &m)
 	return;
 }
 
-void AllMaps::changeMapByNumber(int no, vector<string>& m)
+void AllMaps::modifyMapByNumber(int no, vector<string>& m)
 {
 	string Path = "../savedata/" + namesOfMaps[no] + ".txt";
 	fstream writefile(Path, ios::binary | ios::out);

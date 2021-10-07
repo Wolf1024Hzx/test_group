@@ -1,4 +1,4 @@
-// ´¢´æËùÓĞµØÍ¼µÄÃû×Ö£¬ĞòºÅ
+// å‚¨å­˜æ‰€æœ‰åœ°å›¾çš„åå­—ï¼Œåºå·
 #pragma once
 #include <unordered_set>
 #include <vector>
@@ -10,14 +10,14 @@ class AllMaps {
 public:
 	vector<string> namesOfMaps;
 	unordered_set<string> names;
-	AllMaps(); // ¹¹Ôìº¯Êı£¬¶ÁÈ¡³öËùÓĞµØÍ¼µÄÃû×Ö²¢±êÉÏĞòºÅ
-	void display(); // Êä³öËùÓĞµØÍ¼µÄĞòºÅºÍÃû×Ö
-	void newMap(string& name, vector<string> &thismap); // Í¨¹ıÃû×Ö´´½¨µØÍ¼£¬×¢ÒâÃ»ÅĞ¶ÏÊÇ·ñÃû×Ö³åÍ»
-	void deleteMapByName(string& name); // Í¨¹ıÃû×ÖÉ¾³ıµØÍ¼£¬×¢ÒâÎ´ÅĞ¶Ï¸ÃÃû×ÖµØÍ¼ÊÇ·ñ´æÔÚ
-	void deleteMapByNumber(int no); // Í¨¹ıĞòºÅÉ¾³ıµØÍ¼£¬×¢ÒâÎ´ÅĞ¶ÏĞòºÅÊÇ·ñÔ½½ç
-	vector<string> loadMapByName(string& name); // Í¨¹ıÃû×Ö¼ÓÔØµØÍ¼,×¢ÒâÎ´ÅĞ¶Ï¸ÃÃû×ÖµØÍ¼ÊÇ·ñ´æÔÚ
-	vector<string> loadMapByNumber(int no); // Í¨¹ıĞòºÅ¼ÓÔØµØÍ¼£¬×¢ÒâÎ´ÅĞ¶ÏĞòºÅÊÇ·ñÔ½½ç
-	bool findMap(string index, int mode); //Í¨¹ıË÷ÒıÀ´Ñ°ÕÒµØÍ¼£¬·ÖÃû×ÖºÍĞòºÅÁ½ÖÖÄ£Ê½
-	void changeMapByName(string& name, vector<string>& m);
-	void changeMapByNumber(int no, vector<string>& m);
+	AllMaps(); // æ„é€ å‡½æ•°ï¼Œè¯»å–å‡ºæ‰€æœ‰åœ°å›¾çš„åå­—å¹¶æ ‡ä¸Šåºå·
+	void display(); // è¾“å‡ºæ‰€æœ‰åœ°å›¾çš„åºå·å’Œåå­—
+	void newMap(string& name, vector<string> &thismap); // é€šè¿‡åå­—åˆ›å»ºåœ°å›¾ï¼Œæ³¨æ„æ²¡åˆ¤æ–­æ˜¯å¦åå­—å†²çª
+	void deleteMapByName(string& name); // é€šè¿‡åå­—åˆ é™¤åœ°å›¾ï¼Œæ³¨æ„æœªåˆ¤æ–­è¯¥åå­—åœ°å›¾æ˜¯å¦å­˜åœ¨
+	void deleteMapByNumber(int no); // é€šè¿‡åºå·åˆ é™¤åœ°å›¾ï¼Œæ³¨æ„æœªåˆ¤æ–­åºå·æ˜¯å¦è¶Šç•Œ
+	vector<string> loadMapByName(string& name); // é€šè¿‡åå­—åŠ è½½åœ°å›¾,æ³¨æ„æœªåˆ¤æ–­è¯¥åå­—åœ°å›¾æ˜¯å¦å­˜åœ¨
+	vector<string> loadMapByNumber(int no); // é€šè¿‡åºå·åŠ è½½åœ°å›¾ï¼Œæ³¨æ„æœªåˆ¤æ–­åºå·æ˜¯å¦è¶Šç•Œ
+	bool findMap(string index, int mode); //é€šè¿‡ç´¢å¼•æ¥å¯»æ‰¾åœ°å›¾ï¼Œåˆ†åå­—å’Œåºå·ä¸¤ç§æ¨¡å¼
+	void modifyMapByName(string& name, vector<string>& m);// é€šè¿‡åå­—ä¿®æ”¹åœ°å›¾,æ³¨æ„æœªåˆ¤æ–­è¯¥åå­—åœ°å›¾æ˜¯å¦å­˜åœ¨
+	void modifyMapByNumber(int no, vector<string>& m);// é€šè¿‡åºå·ä¿®æ”¹åœ°å›¾ï¼Œæ³¨æ„æœªåˆ¤æ–­åºå·æ˜¯å¦è¶Šç•Œ
 };
