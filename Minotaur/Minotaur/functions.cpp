@@ -1,4 +1,5 @@
 #include <iostream>
+#include<conio.h>
 #include <math.h>
 #include <windows.h>
 #include "functions.h"
@@ -199,6 +200,56 @@ vector<string> chooseMap(AllMaps& all)
 	}
 	vector<string> rubbish;
 	return rubbish;
+}
+
+void startGame(AllMaps& all) {
+	vector<string> tmp = chooseMap(all);
+	MAP map(tmp);
+	int px = map.begin_x, py = map.begin_y, ex = map.end_x, ey = map.end_y;
+	bool flag = true;
+	char ctrl;
+	cout << "--The game will start in five seconds." << endl;
+	cout << "--You could use 'wasd' to control your direction." << endl;
+	cout << "--You could enter 'p' to exit." << endl;
+	cout << "Let's go out of the minotaur!" << endl;
+	Sleep(5000);
+	while (1) {
+		system("cls");
+		map.printMap(px, py);
+		if (px == ex && py == ey)
+			break;
+		ctrl = _getch();
+		if (ctrl == 'w' && px > 0 && map.Map[px - 1][py] != '*')
+			px--;
+		else if (ctrl == 's' && px < map.height - 1 && map.Map[px + 1][py] != '*')
+			px++;
+		else if (ctrl == 'a' && py > 0 && map.Map[px][py - 1] != '*')
+			py--;
+		else if (ctrl == 'd' && py < map.length - 1 && map.Map[px][py + 1] != '*')
+			py++;
+		else if (ctrl == 'p') {
+			flag = false;
+			break;
+		}
+	}
+	if (flag)
+		cout << "!!You Win!!!" << endl;
+	else {
+		cout << "Would you like me to tell you the correct route of the minotaur?[y/n]" << endl << ">>";
+		while (1) {
+			cin >> ctrl;
+			if (ctrl == 'y' || ctrl == 'Y') {
+				map.findSolutionByDFS();
+				break;
+			}
+			else if (ctrl == 'n' || ctrl == 'N') {
+				break;
+			}
+			else cout << "--We do not recognize this command, please enter again." << endl << ">>";
+		}
+	}
+	cout << "Welcome to play again!" << endl;
+	return;
 }
 
 bool creatNewMap(AllMaps& all) {
@@ -608,9 +659,7 @@ void showMap(vector<string>& m)
 bool operation(AllMaps& all, int order) {
 	switch (order) {
 	case 1: {
-		vector<string> tmp = chooseMap(all);
-		MAP map(tmp);
-		map.findSolutionByDFS();
+		startGame(all);
 		return true;
 	}
 	case 2: {

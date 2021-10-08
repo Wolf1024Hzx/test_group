@@ -7,6 +7,7 @@ using namespace std;
 
 void welcome_windows();
 vector<string> chooseMap(AllMaps& all);
+void startGame(AllMaps& all);
 bool creatNewMap(AllMaps& all);
 bool deleteOldMap(AllMaps& all);
 bool modifyOldMap(AllMaps& all);
